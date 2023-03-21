@@ -9,21 +9,21 @@ AMD Ryzen 9 5900X, 1 CPU, 24 logical and 12 physical cores
 
 
 ```
-|                             Method |                Job |            Runtime | TotalRecords |     Mean |    Error |   StdDev |
-|----------------------------------- |------------------- |------------------- |------------- |---------:|---------:|---------:|
-|             ArrayWhereAnyEquals948 |           .NET 7.0 |           .NET 7.0 |           10 | 32.88 ns | 0.263 ns | 0.246 ns |
-|                  ArrayAnyEquals948 |           .NET 7.0 |           .NET 7.0 |           10 | 38.69 ns | 0.777 ns | 1.233 ns |
-|    ArrayWhereEquals948FirstDefault |           .NET 7.0 |           .NET 7.0 |           10 | 35.29 ns | 0.597 ns | 0.559 ns |
-|       ArrayFirstOrDefaultEquals948 |           .NET 7.0 |           .NET 7.0 |           10 | 35.49 ns | 0.670 ns | 0.626 ns |
-|             ArrayWhereAnyEquals948 | .NET Framework 4.8 | .NET Framework 4.8 |           10 | 35.11 ns | 0.290 ns | 0.272 ns |
-|                  ArrayAnyEquals948 | .NET Framework 4.8 | .NET Framework 4.8 |           10 | 40.58 ns | 0.764 ns | 0.714 ns |
-|    ArrayWhereEquals948FirstDefault | .NET Framework 4.8 | .NET Framework 4.8 |           10 | 40.46 ns | 0.275 ns | 0.257 ns |
-|       ArrayFirstOrDefaultEquals948 | .NET Framework 4.8 | .NET Framework 4.8 |           10 | 40.89 ns | 0.432 ns | 0.404 ns |
-|            ArrayWhereGreater948Any |           .NET 7.0 |           .NET 7.0 |           10 | 40.51 ns | 0.828 ns | 2.138 ns |
-|                 ArrayAnyGreater948 |           .NET 7.0 |           .NET 7.0 |           10 | 58.70 ns | 1.193 ns | 2.089 ns |
-| ArrayWhereGreater948FirstOrDefault |           .NET 7.0 |           .NET 7.0 |           10 | 41.18 ns | 0.839 ns | 0.999 ns |
-|      ArrayFirstOrDefaultGreater948 |           .NET 7.0 |           .NET 7.0 |           10 | 59.17 ns | 1.163 ns | 1.031 ns |
-|            ArrayWhereGreater948Any | .NET Framework 4.8 | .NET Framework 4.8 |           10 | 41.06 ns | 0.579 ns | 0.541 ns |
-|                 ArrayAnyGreater948 | .NET Framework 4.8 | .NET Framework 4.8 |           10 | 63.56 ns | 1.057 ns | 0.989 ns |
-| ArrayWhereGreater948FirstOrDefault | .NET Framework 4.8 | .NET Framework 4.8 |           10 | 44.23 ns | 0.468 ns | 0.438 ns |
-|      ArrayFirstOrDefaultGreater948 | .NET Framework 4.8 | .NET Framework 4.8 |           10 | 62.26 ns | 1.212 ns | 1.245 ns |
+|                             Method |                Job |            Runtime | TotalRecords |      Mean |     Error |    StdDev |
+|----------------------------------- |------------------- |------------------- |------------- |----------:|----------:|----------:|
+|             ArrayWhereAnyEquals948 |           .NET 7.0 |           .NET 7.0 |          100 |  32.77 ns |  0.300 ns |  0.281 ns |
+|                  ArrayAnyEquals948 |           .NET 7.0 |           .NET 7.0 |          100 |  38.26 ns |  0.792 ns |  1.428 ns |
+|    ArrayWhereEquals948FirstDefault |           .NET 7.0 |           .NET 7.0 |          100 |  33.58 ns |  0.126 ns |  0.111 ns |
+|       ArrayFirstOrDefaultEquals948 |           .NET 7.0 |           .NET 7.0 |          100 |  35.85 ns |  0.490 ns |  0.458 ns |
+|             ArrayWhereAnyEquals948 | .NET Framework 4.8 | .NET Framework 4.8 |          100 |  34.40 ns |  0.057 ns |  0.050 ns |
+|                  ArrayAnyEquals948 | .NET Framework 4.8 | .NET Framework 4.8 |          100 |  40.41 ns |  0.218 ns |  0.204 ns |
+|    ArrayWhereEquals948FirstDefault | .NET Framework 4.8 | .NET Framework 4.8 |          100 |  40.89 ns |  0.312 ns |  0.292 ns |
+|       ArrayFirstOrDefaultEquals948 | .NET Framework 4.8 | .NET Framework 4.8 |          100 |  41.14 ns |  0.302 ns |  0.235 ns |
+|            ArrayWhereGreater948Any |           .NET 7.0 |           .NET 7.0 |          100 | 183.86 ns |  3.607 ns |  9.247 ns |
+|                 ArrayAnyGreater948 |           .NET 7.0 |           .NET 7.0 |          100 | 472.16 ns |  9.310 ns |  9.144 ns |
+| ArrayWhereGreater948FirstOrDefault |           .NET 7.0 |           .NET 7.0 |          100 | 173.78 ns |  0.615 ns |  0.513 ns |
+|      ArrayFirstOrDefaultGreater948 |           .NET 7.0 |           .NET 7.0 |          100 | 466.86 ns |  8.346 ns |  7.399 ns |
+|            ArrayWhereGreater948Any | .NET Framework 4.8 | .NET Framework 4.8 |          100 | 183.63 ns |  0.746 ns |  0.698 ns |
+|                 ArrayAnyGreater948 | .NET Framework 4.8 | .NET Framework 4.8 |          100 | 543.38 ns | 10.629 ns | 13.053 ns |
+| ArrayWhereGreater948FirstOrDefault | .NET Framework 4.8 | .NET Framework 4.8 |          100 | 187.11 ns |  0.583 ns |  0.546 ns |
+|      ArrayFirstOrDefaultGreater948 | .NET Framework 4.8 | .NET Framework 4.8 |          100 | 538.15 ns | 10.735 ns | 16.713 ns |

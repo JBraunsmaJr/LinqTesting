@@ -19,7 +19,7 @@ namespace LinqTesting
 
         private Person[] _arrayTest;
 
-        [Params(10)]
+        [Params(100)]
         public int TotalRecords;
 
         [GlobalSetup]
