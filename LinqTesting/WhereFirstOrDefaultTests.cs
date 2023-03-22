@@ -8,26 +8,22 @@ namespace LinqTesting
     [SimpleJob(RuntimeMoniker.Net70)]
     public class WhereFirstOrDefaultTests
     {
-        private readonly int[] array = { 399, 895, 319, 946, 339, 948, 807, 520, 643, 312 };
-
-        private int search = 895;
+        [Benchmark]
+        public int GreaterThan() => Shared.Array.Where(x => x > Shared.Search).FirstOrDefault();
 
         [Benchmark]
-        public int GreaterThan() => array.Where(x => x > search).FirstOrDefault();
+        public int LessThan() => Shared.Array.Where(x => x < Shared.Search).FirstOrDefault();
 
         [Benchmark]
-        public int LessThan() => array.Where(x => x < search).FirstOrDefault();
+        public int Equals() => Shared.Array.Where(x => x == Shared.Search).FirstOrDefault();
 
         [Benchmark]
-        public int Equals() => array.Where(x => x == search).FirstOrDefault();
+        public int NotEqual() => Shared.Array.Where(x => x != Shared.Search).FirstOrDefault();
 
         [Benchmark]
-        public int NotEqual() => array.Where(x => x != search).FirstOrDefault();
+        public int GreaterEqual() => Shared.Array.Where(x => x >= Shared.Search).FirstOrDefault();
 
         [Benchmark]
-        public int GreaterEqual() => array.Where(x => x >= search).FirstOrDefault();
-
-        [Benchmark]
-        public int LessEqual() => array.Where(x => x <= search).FirstOrDefault();
+        public int LessEqual() => Shared.Array.Where(x => x <= Shared.Search).FirstOrDefault();
     }
 }

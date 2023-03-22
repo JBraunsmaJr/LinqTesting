@@ -9,20 +9,11 @@ namespace LinqTesting
     [SimpleJob(RuntimeMoniker.Net70)]
     public class ManualTests
     {
-        private readonly int[] array = { 399, 895, 319, 946, 339, 948, 807, 520, 643, 312 };
-
-        private int search = 895;
-        
-        [GlobalSetup]
-        public void Setup()
-        {
-        }
-
         [Benchmark]
         public bool GreaterThan()
         {
-            foreach(var value in array)
-                if (value > search)
+            foreach(var value in Shared.Array)
+                if (value > Shared.Search)
                     return true;
             return false;
         }
@@ -30,8 +21,8 @@ namespace LinqTesting
         [Benchmark]
         public bool LessThan()
         {
-            foreach(var value in array)
-                if (value < search)
+            foreach(var value in Shared.Array)
+                if (value < Shared.Search)
                     return true;
 
             return false;
@@ -40,8 +31,8 @@ namespace LinqTesting
         [Benchmark]
         public bool Equals()
         {
-            foreach(var value in array)
-                if (value == search)
+            foreach(var value in Shared.Array)
+                if (value == Shared.Search)
                     return true;
             return false;
         }
@@ -49,8 +40,8 @@ namespace LinqTesting
         [Benchmark]
         public bool NotEqual()
         {
-            foreach(var value in array)
-                if (value != search)
+            foreach(var value in Shared.Array)
+                if (value != Shared.Search)
                     return true;
 
             return false;
@@ -59,8 +50,8 @@ namespace LinqTesting
         [Benchmark]
         public bool GreaterEqual()
         {
-            foreach(var value in array)
-                if (value >= search)
+            foreach(var value in Shared.Array)
+                if (value >= Shared.Search)
                     return true;
             return false;
         }
@@ -68,8 +59,8 @@ namespace LinqTesting
         [Benchmark]
         public bool LessEqual()
         {
-            foreach(var value in array)
-                if (value <= search)
+            foreach(var value in Shared.Array)
+                if (value <= Shared.Search)
                     return true;
             return false;
         }

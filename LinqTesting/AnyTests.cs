@@ -8,26 +8,22 @@ namespace LinqTesting
     [SimpleJob(RuntimeMoniker.Net70)]
     public class AnyTests
     {
-        private readonly int[] array = { 399, 895, 319, 946, 339, 948, 807, 520, 643, 312 };
-
-        private int search = 895;
-        
         [Benchmark]
-        public bool GreaterThan() => array.Any(x => x > search);
+        public bool GreaterThan() => Shared.Array.Any(x => x > Shared.Search);
 
         [Benchmark]
-        public bool LessThan() => array.Any(x => x < search);
+        public bool LessThan() => Shared.Array.Any(x => x < Shared.Search);
 
         [Benchmark]
-        public bool Equals() => array.Any(x => x == search);
+        public bool Equals() => Shared.Array.Any(x => x == Shared.Search);
 
         [Benchmark]
-        public bool NotEqual() => array.Any(x => x != search);
+        public bool NotEqual() => Shared.Array.Any(x => x != Shared.Search);
 
         [Benchmark]
-        public bool GreaterEqual() => array.Any(x => x >= search);
+        public bool GreaterEqual() => Shared.Array.Any(x => x >= Shared.Search);
 
         [Benchmark]
-        public bool LessEqual() => array.Any(x => x <= search);   
+        public bool LessEqual() => Shared.Array.Any(x => x <= Shared.Search);   
     }
 }

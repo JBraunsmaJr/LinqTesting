@@ -8,26 +8,22 @@ namespace LinqTesting
     [SimpleJob(RuntimeMoniker.Net70)]
     public class FirstOrDefaultTests
     {
-        private readonly int[] array = { 399, 895, 319, 946, 339, 948, 807, 520, 643, 312 };
-
-        private int search = 895;
+        [Benchmark]
+        public int GreaterThan() => Shared.Array.FirstOrDefault(x => x > Shared.Search);
 
         [Benchmark]
-        public int GreaterThan() => array.FirstOrDefault(x => x > search);
+        public int LessThan() => Shared.Array.FirstOrDefault(x => x < Shared.Search);
 
         [Benchmark]
-        public int LessThan() => array.FirstOrDefault(x => x < search);
+        public int Equals() => Shared.Array.FirstOrDefault(x => x == Shared.Search);
 
         [Benchmark]
-        public int Equals() => array.FirstOrDefault(x => x == search);
+        public int NotEqual() => Shared.Array.FirstOrDefault(x => x != Shared.Search);
 
         [Benchmark]
-        public int NotEqual() => array.FirstOrDefault(x => x != search);
+        public int GreaterEqual() => Shared.Array.FirstOrDefault(x => x >= Shared.Search);
 
         [Benchmark]
-        public int GreaterEqual() => array.FirstOrDefault(x => x >= search);
-
-        [Benchmark]
-        public int LessEqual() => array.FirstOrDefault(x => x <= search);
+        public int LessEqual() => Shared.Array.FirstOrDefault(x => x <= Shared.Search);
     }
 }
