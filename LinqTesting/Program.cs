@@ -8,7 +8,14 @@ namespace LinqTesting
     {
         public static void Main(string[] args)
         {
-            BenchmarkRunner.Run<LinqTests>();
+            BenchmarkRunner.Run<ManualTests>();
+            BenchmarkRunner.Run<EqualityTests>();
+            
+            BenchmarkRunner.Run<AnyTests>();
+            BenchmarkRunner.Run<WhereAnyTests>();
+
+            BenchmarkRunner.Run<FirstOrDefaultTests>();
+            BenchmarkRunner.Run<WhereFirstOrDefaultTests>();
             
             Random random = new Random(1234);
 
