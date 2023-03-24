@@ -3,6 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
+using LinqTesting.Extensions;
 
 namespace LinqTesting
 {
@@ -11,148 +12,55 @@ namespace LinqTesting
         public int Id { get; set; }
     }
     
-    [SimpleJob(RuntimeMoniker.Net48)]
-    [SimpleJob(RuntimeMoniker.Net70)]
+    [RPlotExporter]
     public class LinqTests
     {
-        // For repeatable results
-        private readonly Random _random = new Random(1234);
 
-        private Person[] _arrayTest;
-        private int[] _plainArray;
+        private Func<int,bool> greaterPredicate = x=> x > Shared.Search;
 
-        [Params(100)]
-        public int TotalRecords;
-
-        const int searchFor = 948;
-        
-        private Func<int,bool> greaterPredicate = x=> x > searchFor;
-        private Func<int,bool> equalsPredicate = x => x == searchFor;
-
-        [GlobalSetup]
-        public void Setup()
+        [Benchmark]
+        public void WhereAny()
         {
-            _arrayTest = new Person[TotalRecords];
-            _plainArray = new int[TotalRecords];
-            
-            for (var i = 0; i < TotalRecords; i++)
-            {
-                var id = _random.Next(0, 1000);
-                
-                var item = new Person
-                {
-                    Id = id
-                };
-
-                _plainArray[i] = id;
-                _arrayTest[i] = item;
-            }
-        }
-
-        [Benchmark(Baseline = true)]
-        public void ManualGreater948_Foreach()
-        {
-            foreach(var item in _plainArray)
-                if (greaterPredicate(item))
-                    break;
-        }
-
-        public void ManualEqualsForEach()
-        {
-            foreach(var item in _plainArray)
-                if (equalsPredicate(item))
-                    break;
+            var exists = Shared.Array.Where(greaterPredicate).Any();
         }
 
         [Benchmark]
-        public void WhereGreaterAny()
+        public void Any()
         {
-            var result = _plainArray.Where(greaterPredicate).Any();
+            var exists = Shared.Array.Any(greaterPredicate);
         }
 
         [Benchmark]
-        public void AnyGreater()
+        public void MyExtensionAny()
         {
-            var result = _plainArray.Any(greaterPredicate);
+            var exists = Shared.Array.CustomAny(greaterPredicate);
+        }
+
+
+        [Benchmark]
+        public void WhereFirstOrDefault()
+        {
+            var item = Shared.Array.Where(greaterPredicate).FirstOrDefault();
         }
 
         [Benchmark]
-        public void FirstOrDefaultGreater()
+        public void FirstOrDefault()
         {
-            var result = _plainArray.FirstOrDefault(greaterPredicate);
+            var item = Shared.Array.FirstOrDefault(greaterPredicate);
         }
 
         [Benchmark]
-        public void WhereGreaterFirstOrDefault()
+        public void MyExtensionFirstOrDefault()
         {
-            var result = _plainArray.Where(greaterPredicate).FirstOrDefault();
+            var item = Shared.Array.CustomFirstOrDefault(greaterPredicate);
         }
 
         [Benchmark]
-        public void FirstOrDefaultEquals()
+        public void ForEachIt()
         {
-            var result = _plainArray.FirstOrDefault(equalsPredicate);
+            foreach(var item in Shared.Array)
+                if (item > Shared.Search)
+                    return;
         }
-
-        [Benchmark]
-        public void WhereEqualsFirstOrDefault()
-        {
-            var result = _plainArray.Where(equalsPredicate).FirstOrDefault();
-        }
-
-        [Benchmark]
-        public void AnyEquals()
-        {
-            var result = _plainArray.Any(equalsPredicate);
-        }
-
-        [Benchmark]
-        public void WhereEqualsAny()
-        {
-            var result = _plainArray.Where(equalsPredicate).Any();
-        }
-        
-        //
-        // [Benchmark]
-        // [BenchmarkCategory("Equals")]
-        // public void ArrayWhereAnyEquals948()
-        // {
-        //     var result = _plainArray.Where(x => x == 948).Any();
-        // }
-        //
-        // [Benchmark]
-        // [BenchmarkCategory("Equals")]
-        // public void ArrayAnyEquals948()
-        // {
-        //     var result = _plainArray.Any(x => x == 948);
-        // }
-        //
-        // [Benchmark]
-        // [BenchmarkCategory("Equals")]
-        // public void ArrayWhereEquals948FirstDefault()
-        // {
-        //     var result = _plainArray.Where(x => x == 948).FirstOrDefault();
-        // }
-        //
-        // [Benchmark]
-        // [BenchmarkCategory("Equals")]
-        // public void ArrayFirstOrDefaultEquals948()
-        // {
-        //     var result = _plainArray.FirstOrDefault(x => x == 948);
-        // }
-        //
-        // [Benchmark]
-        // [BenchmarkCategory("Greater")]
-        // public void ArrayWhereGreater948FirstOrDefault()
-        // {
-        //     var result = _plainArray.Where(x => x > 948).FirstOrDefault();
-        // }
-        //
-        // [Benchmark]
-        // [BenchmarkCategory("Greater")]
-        // public void ArrayFirstOrDefaultGreater948()
-        // {
-        //     var result = _plainArray.FirstOrDefault(x => x > 948);
-        // }
     }
 }
